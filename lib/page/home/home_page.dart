@@ -25,10 +25,10 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Menu'),
+              child: Text(''),
             ),
             ListTile(
-              title: const Text('Cadastro'), // Altere o texto para "Cadastro"
+              title: const Text('Cadastro'),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

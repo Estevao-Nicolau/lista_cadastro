@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lista_contatos/page/home/widgets/card.dart';
 import 'package:lista_contatos/page/home/widgets/userInputForm.dart';
 
-
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -20,7 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  bool isDataConfirmed = false; // Novo estado para controlar a confirmação dos dados
+  bool isDataConfirmed =
+      false; // Novo estado para controlar a confirmação dos dados
   File? _image; // Estado para armazenar a imagem selecionada
 
   @override
@@ -66,14 +66,11 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           const SizedBox(height: 16.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Alinhe horizontalmente os botões
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Alinhe horizontalmente os botões
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Implemente a ação para salvar os dados do formulário aqui
-                  // Você pode acessar os dados do formulário usando os controladores (controllers)
-                  // nameController.text, ageController.text, cpfController.text, etc.
-
                   // Após salvar os dados, defina isDataConfirmed como true
                   setState(() {
                     isDataConfirmed = true;
@@ -102,25 +99,21 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           const SizedBox(height: 16.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Alinhe horizontalmente os botões
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Alinhe horizontalmente os botões
             children: [
               ElevatedButton(
-                onPressed: () {
-                  // Implemente a ação para confirmar os dados aqui
-
-                  // Por exemplo, você pode enviar os dados para o servidor neste momento
-
-                  // Após a confirmação, você pode redirecionar o usuário ou fazer outras ações necessárias
-                },
+                onPressed: () {},
                 child: const Text('Confirmar'),
               ),
-              const SizedBox(width: 16.0), // Adicione um espaço entre os botões
+              const SizedBox(width: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  // Implemente a ação para voltar à página de entrada de dados aqui
-                  setState(() {
-                    isDataConfirmed = false;
-                  });
+                  setState(
+                    () {
+                      isDataConfirmed = false;
+                    },
+                  );
                 },
                 child: const Text('Voltar'),
               ),
@@ -132,7 +125,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
