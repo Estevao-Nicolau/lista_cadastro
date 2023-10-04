@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lista_contatos/models/user_model.dart';
 import 'package:lista_contatos/page/listscard/list_card.dart';
 import 'package:lista_contatos/page/registerPage/register_page.dart';
+import 'package:lista_contatos/repository_dio/repository_dio.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final DioRepository _repository = DioRepository();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,93 +44,22 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListCard(
-              users: [
-                UserModel(
-                  name: 'Ana',
-                  age: '30',
-                  cpf: '12345678901',
-                  email: 'ana@example.com',
-                  phone: '123-456-7890',
-                ),
-                UserModel(
-                  name: 'Aline',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Amamo',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Bia',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Baiha',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Caio',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Caiq',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Daniel',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Deved',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Estevao',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                UserModel(
-                  name: 'Erick',
-                  age: '25',
-                  cpf: '98765432109',
-                  email: 'aline@example.com',
-                  phone: '987-654-3210',
-                ),
-                // Adicione mais usuários aqui
-              ],
-            ),
-          ),
-        ],
+      body: FutureBuilder<List<Results>>(
+        future: _repository.getUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Erro: ${snapshot.error}'),
+            );
+          } else {
+            final users = snapshot.data;
+            return ListCard(results: users);
+          }
+        },
       ),
     );
   }
