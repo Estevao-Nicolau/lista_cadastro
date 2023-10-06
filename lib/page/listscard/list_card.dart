@@ -42,11 +42,12 @@ class ListCard extends StatelessWidget {
               child: Row(
                 children: userList
                     .map((user) => UserCard(
+                          profilephotoController: TextEditingController(text: user.profilephoto),
+                          phoneController: TextEditingController(text: user.phone.toString()),
                           nameController: TextEditingController(text: user.name),
                           ageController: TextEditingController(text: user.age.toString()),
                           cpfController: TextEditingController(text: user.cpf.toString()),
                           emailController: TextEditingController(text: user.emial),
-                          phoneController: TextEditingController(text: user.phone.toString()),
                         ))
                     .toList(),
               ),

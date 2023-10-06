@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class UserCard extends StatelessWidget {
+  final TextEditingController profilephotoController;
   final TextEditingController nameController;
   final TextEditingController ageController;
   final TextEditingController cpfController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
 
-  const UserCard({super.key, 
+  const UserCard({
+    super.key,
+    required this.profilephotoController,
     required this.nameController,
     required this.ageController,
     required this.cpfController,
@@ -32,7 +35,6 @@ class UserCard extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 30.0,
-                  // Aqui você pode definir a imagem do usuário
                   backgroundImage: AssetImage('caminho_da_imagem.png'),
                 ),
                 const SizedBox(width: 16.0),
@@ -84,6 +86,3 @@ class UserCard extends StatelessWidget {
     );
   }
 }
-
-
-
