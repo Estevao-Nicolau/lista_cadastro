@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:lista_contatos/models/user_model.dart';
 import 'package:lista_contatos/page/home/widgets/card.dart';
@@ -42,7 +44,7 @@ class ListCard extends StatelessWidget {
               child: Row(
                 children: userList
                     .map((user) => UserCard(
-                          profilePhoto: null,
+                          profilephoto: File(user.profilephoto!), // Passa o arquivo diretamente
                           phoneController: TextEditingController(text: user.phone.toString()),
                           nameController: TextEditingController(text: user.name),
                           ageController: TextEditingController(text: user.age.toString()),

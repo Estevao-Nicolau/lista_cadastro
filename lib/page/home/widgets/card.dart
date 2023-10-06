@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
 class UserCard extends StatelessWidget {
-  final File? profilePhoto;
+  final File? profilephoto;
   final TextEditingController nameController;
   final TextEditingController ageController;
   final TextEditingController cpfController;
@@ -12,7 +11,7 @@ class UserCard extends StatelessWidget {
 
   const UserCard({
     Key? key,
-    required this.profilePhoto,
+    required this.profilephoto,
     required this.nameController,
     required this.ageController,
     required this.cpfController,
@@ -37,7 +36,7 @@ class UserCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30.0,
-                  backgroundImage: profilePhoto != null ? FileImage(profilePhoto!) : null,
+                  backgroundImage: profilephoto != null ? FileImage(profilephoto!) : null,
                 ),
                 const SizedBox(width: 16.0),
                 const Column(

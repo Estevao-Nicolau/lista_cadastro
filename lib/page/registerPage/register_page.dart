@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lista_contatos/models/user_model.dart';
 import 'package:lista_contatos/page/home/widgets/card.dart';
 import 'package:lista_contatos/page/home/widgets/userInputForm.dart';
+import 'package:lista_contatos/repository_dio/repository_dio.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -88,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Column(
         children: [
           UserCard(
-            profilePhoto: _image,
+            profilephoto: _image,
             nameController: nameController,
             ageController: ageController,
             cpfController: cpfController,
@@ -100,7 +102,23 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final results = Results(
+                    name: nameController.text,
+                    age: int.tryParse(ageController.text) ?? 0,
+                    emial: emailController.text,
+                    cpf: int.tryParse(cpfController.text) ?? 0,
+                    profilephoto: _image != null ? _image!.path : "",
+                    phone: int.tryParse(phoneController.text) ?? 0,
+                  );
+
+                  try {
+                    await DioRepository().createUser(results);
+                    print('User data saved successfully');
+                  } catch (error) {
+                    print('Error saving user data: $error');
+                  }
+                },
                 child: const Text('Confirmar'),
               ),
               const SizedBox(width: 16.0),

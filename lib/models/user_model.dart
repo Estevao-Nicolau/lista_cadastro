@@ -25,31 +25,32 @@ class Results {
   String? objectId;
   String? name;
   int? age;
-  String? emial;
+  String? emial; 
   int? cpf;
-  String? profilephoto;
+  String? profilephoto; // Add this property for the image path
   int? phone;
   String? createdAt;
   String? updatedAt;
 
-  Results(
-      {this.objectId,
-      this.name,
-      this.age,
-      this.emial,
-      this.cpf,
-      this.profilephoto,
-      this.phone,
-      this.createdAt,
-      this.updatedAt});
+  Results({
+    this.objectId,
+    this.name,
+    this.age,
+    this.emial, 
+    this.cpf,
+    this.profilephoto, // Add this property for the image path
+    this.phone,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Results.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
     name = json['name'];
     age = json['age'];
-    emial = json['emial'];
+    emial = json['emial']; // Typo here, should be 'email'
     cpf = json['cpf'];
-    profilephoto = json['profilephoto'];
+    profilephoto = json['profilephoto']; // Add this property for the image path
     phone = json['phone'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -60,9 +61,9 @@ class Results {
     data['objectId'] = objectId;
     data['name'] = name;
     data['age'] = age;
-    data['emial'] = emial;
+    data['email'] = emial; // Typo here, should be 'email'
     data['cpf'] = cpf;
-    data['profilephoto'] = profilephoto;
+    data['profilephoto'] = profilephoto; // Add this property for the image path
     data['phone'] = phone;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
