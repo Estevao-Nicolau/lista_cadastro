@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class UserCard extends StatelessWidget {
-  final TextEditingController profilephotoController;
+  final File? profilePhoto;
   final TextEditingController nameController;
   final TextEditingController ageController;
   final TextEditingController cpfController;
@@ -9,14 +11,14 @@ class UserCard extends StatelessWidget {
   final TextEditingController phoneController;
 
   const UserCard({
-    super.key,
-    required this.profilephotoController,
+    Key? key,
+    required this.profilePhoto,
     required this.nameController,
     required this.ageController,
     required this.cpfController,
     required this.emailController,
     required this.phoneController,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,9 @@ class UserCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 30.0,
-                  backgroundImage: AssetImage('caminho_da_imagem.png'),
+                  backgroundImage: profilePhoto != null ? FileImage(profilePhoto!) : null,
                 ),
                 const SizedBox(width: 16.0),
                 const Column(

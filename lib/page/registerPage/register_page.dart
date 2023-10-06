@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Column(
         children: [
           UserCard(
-            profilephotoController: phoneController,
+            profilePhoto: _image,
             nameController: nameController,
             ageController: ageController,
             cpfController: cpfController,
