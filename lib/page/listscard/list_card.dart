@@ -11,6 +11,9 @@ class ListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   // Classifique a lista de resultados em ordem alfabética com base nos nomes
+    results?.sort((a, b) => a.name!.compareTo(b.name!));
+
     // Organize os usuários em um mapa com base na letra inicial do nome
     final Map<String, List<Results>?> resultsByInitial = {};
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lista_contatos/models/user_model.dart';
+import 'package:lista_contatos/page/home/home_page.dart';
 import 'package:lista_contatos/page/home/widgets/card.dart';
 import 'package:lista_contatos/page/home/widgets/userInputForm.dart';
 import 'package:lista_contatos/repository_dio/repository_dio.dart';
@@ -115,6 +116,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   try {
                     await DioRepository().createUser(results);
                     print('User data saved successfully');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ));
                   } catch (error) {
                     print('Error saving user data: $error');
                   }
